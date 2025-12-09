@@ -25,15 +25,15 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: "20"
-          cache: 'npm'
+          # cache: 'npm' लाइन हटा दी गई है क्योंकि package-lock.json नहीं है
 
       - name: Install dependencies
-        run: npm ci
+        # npm ci की जगह npm install का उपयोग कर रहे हैं
+        run: npm install
 
       - name: Build
         run: npm run build
         env:
-          # This pulls the key from GitHub Secrets
           VITE_API_KEY: ${{ secrets.VITE_API_KEY }}
 
       - name: Upload artifact
